@@ -7,16 +7,16 @@ public class ProductRepository {
         return products;
     }
 
-    public void save(Product product) {
+    public void add(Product product) {
         Product[] tmp = new Product[products.length + 1];
         for (int i = 0; i < products.length; i++) {
             tmp[i] = products[i];
         }
-        tmp[tmp.length + 1] = product;
+        tmp[tmp.length - 1] = product;
         products = tmp;
     }
 
-    public void RemoveById(int id) {
+    public Product[] removeById(int id) {
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
         for (Product product : products) {
@@ -25,6 +25,8 @@ public class ProductRepository {
                 copyToIndex++;
             }
         }
+        products = tmp;
+        return products;
     }
 
     public Product[] getItems() {
